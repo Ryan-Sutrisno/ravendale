@@ -1,10 +1,8 @@
 <?php
+require "./layouts/include.php";
+require './DB/display.php';
 
-require "./database.php";
-
-$database = new Database();
-
-$database->connect();
+$categories = getCategories();
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +13,15 @@ $database->connect();
     <title>Document</title>
 </head>
 <body>
-    
+    <?php
+        foreach ($categories as $categorie):
+        $name = $categorie["name"];
+        $description = $categorie["description"];
+        ?>
+    <h1> <?= $name ?> </h1>
+    <h1> <?= $description ?> </h1>
+
+    <?php endforeach; ?>
+
 </body>
 </html>
