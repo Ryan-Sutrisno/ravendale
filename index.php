@@ -1,6 +1,6 @@
 <?php
 
-require "./DB/Database.php";
+require "./database.php";
 
 $database = new Database();
 
