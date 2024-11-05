@@ -2,9 +2,6 @@
 require "./layouts/include.php";
 require './DB/display.php';
 
-$categories = getCategories();
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
