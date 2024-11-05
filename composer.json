@@ -1,0 +1,13 @@
+{
+        "require": {
+            "josantonius/session": "^2.0"
+        },
+        "autoload": {
+            "classmap": [
+                "classes/",
+                "Controllers/",
+                "DB/"
+            ]
+        }
+    }
+    
