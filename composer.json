@@ -8,6 +8,9 @@
                 "classes/",
                 "Controllers/",
                 "DB/"
+            ],
+            "files": [
+                "helpers.php"
             ]
         }
     }
