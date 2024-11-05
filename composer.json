@@ -1,6 +1,7 @@
 {
         "require": {
-            "josantonius/session": "^2.0"
+            "josantonius/session": "^2.0",
+                "fakerphp/faker": "^1.23"
         },
         "autoload": {
             "classmap": [
@@ -10,4 +11,3 @@
             ]
         }
     }
-    

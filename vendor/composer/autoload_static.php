@@ -6,23 +6,44 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit65316d88de3aaf2141f57e6b303c68d8
 {
+    public static $files = array (
+        '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Psr\\Container\\' => 14,
+        ),
         'J' => 
         array (
             'Josantonius\\Session\\' => 20,
         ),
+        'F' => 
+        array (
+            'Faker\\' => 6,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
         'Josantonius\\Session\\' => 
         array (
             0 => __DIR__ . '/..' . '/josantonius/session/src',
+        ),
+        'Faker\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Database' => __DIR__ . '/../..' . '/DB/Database.php',
+        'DatabaseSeeder' => __DIR__ . '/../..' . '/DB/DatabaseSeeder.php',
         'Display' => __DIR__ . '/../..' . '/DB/Display.php',
         'Login' => __DIR__ . '/../..' . '/classes/Login.php',
         'LoginController' => __DIR__ . '/../..' . '/Controllers/LoginController.php',
