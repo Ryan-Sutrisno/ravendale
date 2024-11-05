@@ -1,6 +1,8 @@
 <?php
 require './vendor/autoload.php';
 
+authCheck();
+
 $display = new Display();
 $categories = $display->getCategories();
 ?>
