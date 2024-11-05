@@ -2,7 +2,7 @@
 
 class Register extends Database
 {
-    protected function setUser($username, $email, $password)
+    protected function createUser($username, $email, $password)
     {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -20,7 +20,7 @@ class Register extends Database
         $stmt = null;
     }
 
-    protected function checkUser($username, $email)
+    protected function getUser($username, $email)
     {
         $stmt = $this->connect()->prepare("SELECT username FROM users WHERE username = ? OR email = ?");
         $stmt->bindParam(1, $username);
@@ -33,6 +33,5 @@ class Register extends Database
         }
 
         return !($stmt->rowCount() > 0);
-
     }
 }

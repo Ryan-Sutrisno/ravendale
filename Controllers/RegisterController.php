@@ -1,9 +1,8 @@
 <?php
 
 use Josantonius\Session\Facades\Session;
-require '../DB/Database.php';
 require '../vendor/autoload.php';
-require '../classes/Register.php';
+
 
 class RegisterController extends Register
 {
@@ -26,38 +25,37 @@ class RegisterController extends Register
         $session->start();
 
         if ($this->emptyInput() == false) {
-            $session->set('error', "Please fill in all fields.");
+            Session::set('error', "Please fill in all fields.");
             header("Location: ../views/register.php");
             exit;
         }
 
         if ($this->passwordLength() == false) {
-            $session->set('error', "Password must be at least 8 characters.");
+            Session::set('error', "Password must be at least 8 characters.");
             header("Location: ../views/register.php");
             exit;
         }
 
         if ($this->invalidEmail() == false) {
-            $session->set('error', "Invalid email format.");
+            Session::set('error', "Invalid email format.");
             header("Location: ../views/register.php");
             exit;
         }
 
         if ($this->passwordMatch() == false) {
-            $session->set('error', "Passwords do not match.");
+            Session::set('error', "Passwords do not match.");
             header("Location: ../views/register.php");
             exit;
         }
 
-        if ($this->checkUsername() == false) {
-            $session->set('error', "Username or email already exists.");
+        if ($this->existingUser() == false) {
+            Session::set('error', "Username or email already exists.");
             header("Location: ../views/register.php");
             exit;
         }
 
-        // Create user
-        $this->setUser($this->username, $this->email, $this->password);
-        $session->set('success', "Registration successful! Please log in.");
+        $this->createUser($this->username, $this->email, $this->password);
+        Session::set('success', "Registration successful! Please log in.");
         header("Location: ../views/login.php");
         exit;
     }
@@ -82,9 +80,9 @@ class RegisterController extends Register
         return $this->password === $this->repeatpassword;
     }
 
-    private function checkUsername()
+    private function existingUser()
     {
-        return $this->checkUser($this->username, $this->email);
+        return $this->getUser($this->username, $this->email);
     }
 }
 
