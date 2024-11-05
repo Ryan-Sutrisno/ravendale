@@ -87,3 +87,51 @@ CREATE TABLE Reports (
     FOREIGN KEY (post_id) REFERENCES Posts(id) ON DELETE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(id) ON DELETE CASCADE
 );
+
+-- Insert into Users table
+INSERT INTO Users (username, email, password, profile_picture, role)
+VALUES 
+('johndoe', 'johndoe@example.com', 'hashedpassword1', 'john_profile.jpg', 'user'),
+('janedoe', 'janedoe@example.com', 'hashedpassword2', 'jane_profile.jpg', 'admin');
+
+-- Insert into Categories table
+INSERT INTO Categories (name, description)
+VALUES 
+('General Discussion', 'A place for general discussions about various topics.'),
+('Gaming', 'Talk about everything related to gaming.');
+
+-- Insert into Subforums table
+INSERT INTO Subforums (category_id, name, description)
+VALUES 
+(1, 'Introductions', 'New to the forum? Introduce yourself here!'),
+(2, 'Game Reviews', 'Discuss and review the latest games.');
+
+-- Insert into Threads table
+INSERT INTO Threads (subforum_id, user_id, title, content, is_locked, views)
+VALUES 
+(1, 1, 'Hello Everyone!', 'Just joined the forum, excited to be here!', FALSE, 23),
+(2, 2, 'Review of Ravendale RPG', 'Here are my thoughts on the new Ravendale RPG...', FALSE, 15);
+
+-- Insert into Posts table
+INSERT INTO Posts (thread_id, user_id, content)
+VALUES 
+(1, 2, 'Welcome to the forum! Hope you enjoy it here.'),
+(2, 1, 'Great review, I agree with most of your points.');
+
+-- Insert into Likes table
+INSERT INTO Likes (post_id, user_id)
+VALUES 
+(1, 1),
+(2, 2);
+
+-- Insert into Notifications table
+INSERT INTO Notifications (user_id, type, related_id, is_read)
+VALUES 
+(1, 'reply', 1, FALSE),
+(2, 'like', 2, TRUE);
+
+-- Insert into Reports table
+INSERT INTO Reports (post_id, user_id, reason, status)
+VALUES 
+(1, 2, 'Offensive content', 'pending'),
+(2, 1, 'Spam content', 'resolved');

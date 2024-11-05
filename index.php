@@ -1,7 +1,8 @@
 <?php
+require "./layouts/include.php";
+require './DB/display.php';
 
-require './vendor/autoload.php';
+    <?php endforeach; ?>
 
-$database = new Database();
-
-$database->connect();
+</body>
+</html>
