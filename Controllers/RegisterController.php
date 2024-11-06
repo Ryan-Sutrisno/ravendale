@@ -60,27 +60,27 @@ class RegisterController extends Register
         exit;
     }
 
-    private function emptyInput()
+    private function emptyInput(): bool
     {
         return !(empty($this->username) || empty($this->email) || empty($this->password) || empty($this->repeatpassword));
     }
 
-    private function passwordLength()
+    private function passwordLength(): bool
     {
         return strlen($this->password) >= 8;
     }
 
-    private function invalidEmail()
+    private function invalidEmail(): mixed
     {
         return filter_var($this->email, FILTER_VALIDATE_EMAIL);
     }
 
-    private function passwordMatch()
+    private function passwordMatch(): bool
     {
         return $this->password === $this->repeatpassword;
     }
 
-    private function existingUser()
+    private function existingUser(): bool
     {
         return $this->getUser($this->username, $this->email);
     }
