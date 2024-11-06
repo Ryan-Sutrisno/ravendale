@@ -6,6 +6,8 @@ require '../vendor/autoload.php';
 
 class LoginController extends Login
 {
+    use LoginException;
+
     private $email;
     private $password;
 
@@ -24,7 +26,7 @@ class LoginController extends Login
             exit;
         }
 
-        if ($this->nonExistentUser() == true) {
+        if ($this->nonExistentUser($this->email) == true) {
             Session::set('error', "User does not exist");
             header("Location: ../views/login.php");
             exit;
@@ -34,24 +36,6 @@ class LoginController extends Login
         Session::set('success', 'Logged in succesfully');
         header("Location: ../index.php");
         exit;
-    }
-
-    private function emptyInput(): bool
-    {
-        return !(empty($this->email) || empty($this->password));
-    }
-
-    private function nonExistentUser(): bool
-    {
-        $stmt = $this->connect()->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->bindParam(1, $this->email);
-        $stmt->execute();
-
-        if ($stmt->rowCount() == 0) {
-            return true;
-        }
-
-        return false;
     }
 }
 

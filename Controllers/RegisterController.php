@@ -6,17 +6,19 @@ require '../vendor/autoload.php';
 
 class RegisterController extends Register
 {
+    use RegisterException;
+
     private $username;
     private $email;
     private $password;
-    private $repeatpassword;
+    private $repeatPassword;
 
-    public function __construct($username, $email, $password, $repeatpassword)
+    public function __construct($username, $email, $password, $repeatPassword)
     {
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
-        $this->repeatpassword = $repeatpassword;
+        $this->repeatPassword = $repeatPassword;
     }
 
     public function registerUser()
@@ -24,25 +26,25 @@ class RegisterController extends Register
         $session = new Session();
         $session->start();
 
-        if ($this->emptyInput() == false) {
+        if ($this->emptyInput($this->username, $this->email, $this->password, $this->repeatPassword) == false) {
             Session::set('error', "Please fill in all fields.");
             header("Location: ../views/register.php");
             exit;
         }
 
-        if ($this->passwordLength() == false) {
+        if ($this->passwordLength($this->password) == false) {
             Session::set('error', "Password must be at least 8 characters.");
             header("Location: ../views/register.php");
             exit;
         }
 
-        if ($this->invalidEmail() == false) {
+        if ($this->invalidEmail($this->email) == false) {
             Session::set('error', "Invalid email format.");
             header("Location: ../views/register.php");
             exit;
         }
 
-        if ($this->passwordMatch() == false) {
+        if ($this->passwordMatch($this->password, $this->repeatPassword) == false) {
             Session::set('error', "Passwords do not match.");
             header("Location: ../views/register.php");
             exit;
@@ -58,26 +60,6 @@ class RegisterController extends Register
         Session::set('success', "Registration successful! Please log in.");
         header("Location: ../views/login.php");
         exit;
-    }
-
-    private function emptyInput(): bool
-    {
-        return !(empty($this->username) || empty($this->email) || empty($this->password) || empty($this->repeatpassword));
-    }
-
-    private function passwordLength(): bool
-    {
-        return strlen($this->password) >= 8;
-    }
-
-    private function invalidEmail(): mixed
-    {
-        return filter_var($this->email, FILTER_VALIDATE_EMAIL);
-    }
-
-    private function passwordMatch(): bool
-    {
-        return $this->password === $this->repeatpassword;
     }
 
     private function existingUser(): bool

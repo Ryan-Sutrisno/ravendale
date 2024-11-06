@@ -12,6 +12,8 @@ return array(
     'Display' => $baseDir . '/DB/Display.php',
     'Login' => $baseDir . '/classes/Login.php',
     'LoginController' => $baseDir . '/Controllers/LoginController.php',
+    'LoginException' => $baseDir . '/Traits/LoginException.php',
     'Register' => $baseDir . '/classes/Register.php',
     'RegisterController' => $baseDir . '/Controllers/RegisterController.php',
+    'RegisterException' => $baseDir . '/Traits/RegisterException.php',
 );

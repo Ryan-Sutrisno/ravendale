@@ -49,8 +49,10 @@ class ComposerStaticInit65316d88de3aaf2141f57e6b303c68d8
         'Display' => __DIR__ . '/../..' . '/DB/Display.php',
         'Login' => __DIR__ . '/../..' . '/classes/Login.php',
         'LoginController' => __DIR__ . '/../..' . '/Controllers/LoginController.php',
+        'LoginException' => __DIR__ . '/../..' . '/Traits/LoginException.php',
         'Register' => __DIR__ . '/../..' . '/classes/Register.php',
         'RegisterController' => __DIR__ . '/../..' . '/Controllers/RegisterController.php',
+        'RegisterException' => __DIR__ . '/../..' . '/Traits/RegisterException.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
