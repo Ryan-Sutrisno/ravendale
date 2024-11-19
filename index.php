@@ -1,4 +1,6 @@
 <?php
+
+session_start();
 require './vendor/autoload.php';
 
 authCheck();
@@ -23,7 +25,7 @@ $categories = $display->getCategories();
     <h1> <?= $name ?> </h1>
     <h1> <?= $description ?> </h1>
 
-    <?php endforeach; ?>
+    <?php endforeach; ?>    
 
 </body>
 </html>
